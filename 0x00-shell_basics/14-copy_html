@@ -1,2 +1,2 @@
 #!/bin/bash
-cp -n --reflink=always *.html ..
+cp -n --reflink=auto *.html ..
