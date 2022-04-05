@@ -1,2 +1,2 @@
 #!/bin/bash
-echo $PATH | grep -oi -e :*: | wc -l
+echo $PATH | grep -oi -e :*: -e /*: -e :/*[[:alpha:]] | wc -l
