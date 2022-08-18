@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# Script that strips a part of file names.
+
+file_names="$(ls)"
+
+for file_name in $file_names
+do
+    echo "$file_name" | cut -d "-" -f "2"
+done
