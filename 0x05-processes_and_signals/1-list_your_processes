@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# List out all the processes running in the system.
+
+ps -AH u
