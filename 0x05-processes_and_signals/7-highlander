@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# Infinite script that keeps running and running... and is invincible
+
+function im_invincible ()
+{
+    echo "I am invincible!!!"
+}
+
+trap im_invincible SIGTERM
+
+while true
+do
+    echo "To infinity and beyond"
+    sleep 2
+done
