@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+# Init script (daemon) that manages the process "manage_my_process"
+
+function start_process ()
+{
+    sudo -u "$SUDO_USER" ./manage_my_process &
+    pid=$(pgrep -af "manage_my_process" | grep user | cut -d " " -f 1)
+    echo "$pid" > /var/run/my_process.pid
+}
+
+function stop_process ()
+{
+    pid=$(cat /var/run/my_process.pid)
+    kill "$pid"
+    rm -f /var/run/my_process.pid
+}
+
+if [[ $# -eq 1 ]]; then
+    option="$1"
+    if [[ "$option" == "start" ]]; then
+	start_process
+	echo "manage_my_process started"
+    elif [[ "$option" == "stop" ]]; then
+	stop_process
+	echo "manage_my_process stopped"
+    elif [[ "$option" == "restart" ]]; then
+	stop_process
+	start_process
+	echo "manage_my_process restarted"
+    else
+	echo "Usage: manage_my_process {start|stop|restart}"
+    fi
+else
+    echo "Usage: manage_my_process {start|stop|restart}"
+fi
