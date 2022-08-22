@@ -17,7 +17,7 @@ function y_no_love ()
 
 trap hate_kill SIGTERM
 trap y_no_love SIGINT
-trap "rm -f /var/run/myscript.pid" EXIT
+trap "rm -f /var/run/myscript.pid" QUIT EXIT
 
 while true
 do
