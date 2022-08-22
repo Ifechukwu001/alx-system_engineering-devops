@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+#  Traps signals and executes them
+
+echo "$$" > /var/run/myscript.pid
+
+function hate_kill ()
+{
+    echo "I hate the kill command"
+    exit
+}
+
+function y_no_love ()
+{
+    echo "Y U no love me?!"
+    exit
+}
+
+trap hate_kill SIGTERM
+trap y_no_love SIGINT
+trap "rm -f /var/run/myscript.pid" EXIT
+
+while true
+do
+    echo "To infinity and beyond"
+    sleep 1
+done
