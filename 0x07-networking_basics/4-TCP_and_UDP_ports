@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Dis[lays listening ports with their PIDs
+
+netstat -l --program
