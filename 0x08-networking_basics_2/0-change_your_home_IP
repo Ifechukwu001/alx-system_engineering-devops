@@ -6,7 +6,8 @@
   echo;
 } > ~/new_ips
 
-cat < /etc/hosts | grep -v "localhost
-facebook.com" >> ~/new_ips
+cat < /etc/hosts >> ~/new_ips
+sed -i s/^127\.0\.0\.1.*$// ~/new_ips
+sed -i s/^[^8].*facebook.com$// ~/new_ips
 
 mv -f ~/new_ips /etc/hosts
