@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+sudo apt-get update
+sudo apt-get -y install nginx
+
+echo "Hello World!" | sudo sed -n "w /var/www/html/index.html"
