@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 sudo apt-get update
+sudo apt-get -y upgrade
 sudo apt-get -y install nginx
 sudo service nginx start
 echo "Hello World!" | sudo sed -n "w /var/www/html/index.html"
