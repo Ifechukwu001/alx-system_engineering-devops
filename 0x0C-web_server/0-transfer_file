@@ -1,12 +1,17 @@
 #!/usr/bin/env bash
 
 if [ $# -lt 3 ]; then
-	echo "Usage: 0-transfer_file PATH_TO_FILE IP USERNAME PATH_TO_SSH_KEY"
-else
-	file_path="$1"
-	server_ip="$2"
-	username="$3"
-	ssh_privatekey="$4"
+echo "Usage: 0-transfer_file PATH_TO_FILE IP USERNAME PATH_TO_SSH_KEY"
+exit
+fi
 
-	scp -oStrictHostKeyChecking=no -i "$ssh_privatekey" "$file_path" "$username@$server_ip:~/"
+file_path="$1"
+server_ip="$2"
+username="$3"
+ssh_privatekey="$4"
+
+if [ -n "$ssh_privatekey" ]; then
+scp -oStrictHostKeyChecking=no -i "$ssh_privatekey" "$file_path" "$username@$server_ip:~/"
+else
+scp -oStrictHostKeyChecking=no "$file_path" "$username@$server_ip:~/"
 fi
