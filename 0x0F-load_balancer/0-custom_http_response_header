@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# Script that adds a header that tells which server serves a response.
+
+insert_line="\\\t\\tadd_header X-Served-By $(hostname);"
+append_line=$(grep -nm1 location /etc/nginx/sites-available/default  | cut -d ":" -f 1)
+
+sudo sed -i -e "$append_line a $insert_line" /etc/nginx/sites-available/default
+sudo service nginx restart
