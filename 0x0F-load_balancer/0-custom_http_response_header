@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
 # Script that adds a header that tells which server serves a response.
 
+sudo apt-get -y update
+sudo apt-get -y install nginx
+sudo service nginx start
+echo "Hello World!" | sudo tee /var/www/html/index.nginx-debian.html
+
 insert_line="\\\t\\tadd_header X-Served-By $(hostname);"
 append_line=$(grep -nm1 location /etc/nginx/sites-available/default  | cut -d ":" -f 1)
 
