@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+sd_search () {
+	result=$(dig "$1.$2")
+	info_line=$(echo "$result" | awk /IN.*d*\.d*\.d*\.d*/ | tr -s " " "\t")
+	record=$(echo "$info_line" | cut -f 4)
+	ip_addr=$(echo "$info_line" | cut -f 5)
+
+	echo "The subdomain $1 is a $record record and points to $ip_addr"
+}
+
+if [ $# -lt 1 ]; then
+	echo "$0 DOMAIN [SUBDOMAIN]"
+	exit 1
+else
+	if [ $# -eq 1 ]; then
+		sd_search "www" "$1"
+		sd_search "lb-01" "$1"
+		sd_search "web-01" "$1"
+		sd_search "web-02" "$1"
+	else
+		sd_search "$2" "$1"
+	fi
+fi
