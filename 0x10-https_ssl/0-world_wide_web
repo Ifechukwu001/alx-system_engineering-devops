@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# Gets information about a domain.
 
 sd_search () {
 	result=$(dig "$1.$2")
