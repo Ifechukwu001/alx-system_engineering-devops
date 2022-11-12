@@ -7,7 +7,7 @@ date=$(date +"%e-%m-%G")
 passwd="$1"
 
 # Create a dump of the database.
-mysqldump -u root -p "$passwd" --all-databases > backup.sql
+mysqldump -uroot -p"$passwd" --all-databases > backup.sql
 
 # Compress the database dump to a tar.gz archive.
 tar -caf "$date.tar.gz" backup.sql
