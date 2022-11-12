@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+# Backs up a MySQL server.
+
+# Gets the date in the format dd-mm-yyyy.
+date=$(date +"%e-%m-%G")
+# Get the password passed to the script.
+passwd="$1"
+
+# Create a dump of the database.
+mysqldump -u root -p "$passwd" --all-databases > backup.sql
+
+# Compress the database dump to a tar.gz archive.
+tar -caf "$date.tar.gz" backup.sql
